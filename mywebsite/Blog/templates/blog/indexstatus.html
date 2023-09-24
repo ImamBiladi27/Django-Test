@@ -1,0 +1,54 @@
+ {% extends "base.html" %} {% block page_title %} {{page_title}} {% endblock page_title %} {% block contents %}
+<h1>{{title}}</h1>
+{% if messages %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="table-responsive-sm">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Id Status</th>
+                    <th scope="col">Nama Status</th>
+                    <th style="text-align:left">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{post_form.as_table}} {% for status in Statuss %}
+
+                <tr>
+                    <td>{{status.id}}</td>
+                    <td>{{status.id_status}}</td>
+                    <td>{{status.nama_status}}</td>
+
+                    <td>
+
+                        </button><a href="{% url 'deletestatus' status.id %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus {{status.nama_status}}')">Delete</a>
+                        <a class="btn btn-warning" href="{% url 'updatestatus' status.id %}" title="">Update</a>
+                    </td>
+                </tr>
+
+
+                {% endfor %}
+
+        </table><a class="btn btn-primary" href="{% url 'createstatus' %}">Tambah</a>
+        <!-- <a class="btn btn-primary" href="{% url 'create' %}">Tambah</a> -->
+    </div>
+
+</form>
+{% endblock contents %}

@@ -35,6 +35,33 @@ class PostForm(forms.ModelForm):
                   'status_id': forms.Select(attrs={'class':'form-control'}),
          'kategori_id': forms.Select(attrs={'class':'form-control'}),
         }
+class StatusForm(forms.ModelForm):
+    class Meta:
+        model = status
+        fields=[
+            'id_status',
+            'nama_status'
+        ]
+        widgets = {
+               'id_status': forms.NumberInput(attrs={'class':'form-control','min': '1', 'max': '10000000'}),
+               'nama_status': forms.TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Masukkan Nama Status'
+                }
+            ), 
+        }
+class UpdateStatusForm(forms.ModelForm):
+    class Meta:
+        model = status
+        fields=[
+            
+            'nama_status',
+        ]
+        widgets= {
+                'id_status': forms.NumberInput(attrs={'class':'form-control','min': '1', 'max': '10000000'}),
+               'nama_status': forms.Select(attrs={'class':'form-control'}),
+        }
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = produk
