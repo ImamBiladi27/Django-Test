@@ -1,0 +1,62 @@
+ {% extends "base.html" %} {% block page_title %} {{page_title}} {% endblock page_title %} {% block contents %}
+<h1>{{title}}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="table-responsive-sm">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Id Produk</th>
+                    <th scope="col">Nama Produk</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Kategori</th>
+                    <th style="text-align:center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{post_form.as_table}} {% for produk in Produks %}
+                <tr>
+                    <td>{{produk.id}}</td>
+                    <td>{{produk.id_produk}}</td>
+                    <td>{{produk.nama_produk}}</td>
+                    <td>{{produk.harga}}</td>
+                    <td>{{produk.status_id}}</td>
+                    <td>{{produk.get_kategori_id_display}}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+    Delete 
+  </button>
+
+                        <a class="btn btn-warning" href="{% url 'update' produk.id %}" title="">Update</a>
+                    </td>
+                </tr>
+
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah Ingin Menghapus {{produk.nama_produk}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="{% url 'delete' produk.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+        </table>
+        <a class="btn btn-primary" href="{% url 'create' %}">Tambah</a>
+    </div>
+
+</form>
+{% endblock contents %}
