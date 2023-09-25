@@ -1,5 +1,14 @@
  {% extends "base.html" %} {% block page_title %} {{page_title}} {% endblock page_title %} {% block contents %}
+
 <h1>{{title}}</h1>
+<div class="card mb-2" style="width: 13rem;">
+    <div class="card-header">
+        <h5> {{Heading}}</h5>
+    </div>
+
+
+</div>
+
 {% if messages %}
 <div class="container">
     <div class="row">
@@ -22,21 +31,22 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Id Status</th>
-                    <th scope="col">Nama Status</th>
-                    <th scope="col">Aksi</th>
+
+                    <th class="text-center">Id Status</th>
+                    <th class="text-center">Nama Status</th>
+                    <th class="text-center">Aksi</th>
+
                 </tr>
             </thead>
             <tbody>
                 {{post_form.as_table}} {% for status in Statuss %}
 
                 <tr>
-                    <td>{{status.id}}</td>
-                    <td>{{status.id_status}}</td>
-                    <td>{{status.nama_status}}</td>
 
-                    <td>
+                    <td class="text-center">{{status.id_status}}</td>
+                    <td class="text-center">{{status.nama_status}}</td>
+
+                    <td class="text-center">
 
                         <a href="{% url 'deletestatus' status.id_status %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus {{status.nama_status}}')">Delete</a>
                         <a class="btn btn-warning" href="{% url 'updatestatus' status.id_status %}" title="">Update</a>

@@ -18,7 +18,7 @@ def indexkategori(request):
     
     context ={
         'title':' Apikasi Rekayasa Data Produk Dengan Django & PostgreSQL',
-        'Heading' : 'Aplikasi di my website',
+        'Heading' : 'Halaman Kategori',
         'Kategoris':kategoris,
        
     }
@@ -57,7 +57,7 @@ def indexstatus(request):
  
     context ={
         'title':' Apikasi Rekayasa Data Produk Dengan Django & PostgreSQL',
-        'Heading' : 'Aplikasi di my website',
+        'Heading' : 'Halaman Status',
 
         'Statuss':statuss,
     
@@ -126,7 +126,7 @@ def index(request):
     
     context ={
         'title':' Apikasi Rekayasa Data Produk Dengan Django & PostgreSQL',
-        'Heading' : 'Aplikasi di my website',
+        'Heading' : 'Halaman Produk',
         'Produks':produks,
         # 'Foreign':books_with_authors
     }
@@ -195,9 +195,13 @@ class ProdukListView(generics.ListAPIView):
 class kategoriListCreateView(generics.ListCreateAPIView):
     queryset = kategori.objects.all()
     serializer_class = kategoriSerializer
+    
 class kategoriDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = kategori.objects.all()
     serializer_class = kategoriSerializer
+class statusListCreateView(generics.ListCreateAPIView):
+    queryset = status.objects.all()
+    serializer_class = statusSerializer
 # class statusListCreateView(generics.ListCreateAPIView):
 #     queryset = status.objects.all()
 #     serializer_class = statusSerializer
@@ -205,6 +209,13 @@ class kategoriDetailView(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = status.objects.all()
 #     serializer_class = statusSerializer
 
-
-
+def product_list(request):
+    products = produk.objects.all().order_by('pk')
+    search_query = request.GET.get('search_query', '')
+    # print(search_query)
+    
+    if search_query:
+        products = products.filter(nama_produk__icontains=search_query)
+        print('masuk')
+    return render(request, 'blog/index2.html', {'products': products, 'search_query': search_query})
           

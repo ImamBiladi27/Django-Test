@@ -100,3 +100,10 @@ class UpdateForm(forms.ModelForm):
     # harga = forms.IntegerField()
     # status = forms.ModelChoiceField(queryset=status.objects.all())
     
+    # class ProductSearchForm(forms.Form):
+    #     search_query = forms.CharField(
+    #         max_length=100,
+    #         required=False,
+    #         label='Search',
+    #         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Search Products'})
+    #     )

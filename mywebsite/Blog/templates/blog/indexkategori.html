@@ -1,5 +1,15 @@
  {% extends "base.html" %} {% block page_title %} {{page_title}} {% endblock page_title %} {% block contents %}
-<h1>{{title}}</h1>
+<div class="jumbotron text-center">
+    <h1 class="display-4">{{title}}</h1>
+</div>
+
+<div class="card mb-2" style="width: 13rem;">
+    <div class="card-header">
+        <h5> {{Heading}}</h5>
+    </div>
+
+
+</div>
 {% if messages %}
 <div class="container">
     <div class="row">
@@ -22,10 +32,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Id Status</th>
-                    <th scope="col">Nama Status</th>
-                    <th scope="col">Aksi</th>
+
+                    <th class="text-center">Id Status</th>
+                    <th class="text-center">Nama Status</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,10 +43,10 @@
 
                 <tr>
 
-                    <td>{{kategori.id_kategori}}</td>
-                    <td>{{kategori.nama_kategori}}</td>
+                    <td class="text-center">{{kategori.id_kategori}}</td>
+                    <td class="text-center">{{kategori.nama_kategori}}</td>
 
-                    <td>
+                    <td class="text-center">
 
                         <a href="{% url 'deletekategori' kategori.id_kategori %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus {{kategori.nama_kategori}}')">Delete</a>
                         <a class="btn btn-warning" href="{% url 'updatekategori' kategori.id_kategori %}" title="">Update</a>

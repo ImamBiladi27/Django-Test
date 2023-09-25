@@ -15,13 +15,14 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('', views.index,name='index'),
   path('indexstatus', views.indexstatus,name='indexstatus'),
+       path('indexsearch', views.product_list, name='index_search'),
   path('indexkategori', views.indexkategori,name='indexkategori'),
   path('produk/', views.produkListCreateView.as_view(), name='produk-list-create'),
+  path('status/', views.statusListCreateView.as_view(), name='kategori-list-create'),
   path('kategori/', views.kategoriListCreateView.as_view(), name='kategori-list-create'),
-  # path('status/', views.statusSerializer.as_view(), name='status-list-create'),
+  
   path('produk', views.ProdukListView.as_view(), name='produk-list'),
-        #  path('produk/', views.produkDetailView.as_view({'get': 'list'}), name='produk-list'),
-  # path('status/<int:pk>/', views.statusDetailView.as_view(), name='status-detail'),
+   
   path('kategori/<int:pk>/', views.kategoriDetailView.as_view(), name='kategori-detail'),
   
   path('create/',views.create,name='create'),

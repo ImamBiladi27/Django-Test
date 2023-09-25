@@ -6,12 +6,13 @@
     </div>
     <button type="submit" class="btn btn-primary mb-2">Cari</button>
 </form>
-<h1>{{title}}</h1>
-<div class="card mb-2" style="width: 13rem;">
-    <div class="card-header">
-        <h5> {{Heading}}</h5>
-    </div>
+<h1>Apikasi Rekayasa Data Produk Dengan Django & PostgreSQL</h1>
+<div class="container mt-4">
+    <h2 class="text-primary">Halaman Produk</h2>
 
+</div>
+<div class="container mt-3">
+    <h2 class="text-primary">{{Heading}}</h2>
 
 </div>
 {% if messages %}
@@ -46,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{post_form.as_table}} {% for produk in Produks %}
+                {{post_form.as_table}} {% for produk in products %}
 
                 <tr>
                     <td>{{produk.no}}</td>
