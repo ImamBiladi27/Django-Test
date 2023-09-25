@@ -1,0 +1,14 @@
+{% extends "base.html"%} {% block title %} {{title}} {% endblock title %} {% block contents %}
+<h1>{{title}}</h1>
+<form method="POST">
+    {% csrf_token %} {% for form in kategori_form %}
+    <dv class="form-group">
+        {{form.label}} {{form}}
+    </dv>
+    {% endfor %}
+
+
+    <br>
+    <button type="Submit" class="btn btn-primary">Kirim</button>
+</form>
+{% endblock contents %}

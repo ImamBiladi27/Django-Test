@@ -29,25 +29,25 @@
                 </tr>
             </thead>
             <tbody>
-                {{post_form.as_table}} {% for status in Statuss %}
+                {{post_form.as_table}} {% for kategori in Kategoris %}
 
                 <tr>
-                    <td>{{status.id}}</td>
-                    <td>{{status.id_status}}</td>
-                    <td>{{status.nama_status}}</td>
+
+                    <td>{{kategori.id_kategori}}</td>
+                    <td>{{kategori.nama_kategori}}</td>
 
                     <td>
 
-                        <a href="{% url 'deletestatus' status.id_status %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus {{status.nama_status}}')">Delete</a>
-                        <a class="btn btn-warning" href="{% url 'updatestatus' status.id_status %}" title="">Update</a>
+                        <a href="{% url 'deletekategori' kategori.id_kategori %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus {{kategori.nama_kategori}}')">Delete</a>
+                        <a class="btn btn-warning" href="{% url 'updatekategori' kategori.id_kategori %}" title="">Update</a>
                     </td>
                 </tr>
 
 
                 {% endfor %}
 
-        </table><a class="btn btn-primary" href="{% url 'createstatus' %}">Tambah</a>
-
+        </table>
+        <a class="btn btn-primary" href="{% url 'createkategori' %}">Tambah</a>
     </div>
 
 </form>

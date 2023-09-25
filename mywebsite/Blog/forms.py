@@ -1,17 +1,6 @@
 from django import forms
-from .models import status,produk
-# STATUS_CHOICES = (
-#     ('available1', 'L QUEENLY'),
-#     ('discontinued', 'L MTH AKSESORIS (IM)'),
-#     ('ava', 'L MTH TABUNG (LK)'),
-#     ('ava2', 'CI MTH TINTA LAIN (IM)'),
-#     ('ava3', 'L MTH AKSESORIS (LK)'),
-#     ('ava4', 'S MTH STEMPEL (IM)'),
-#     ('ava5', 'SP MTH SPAREPART (LK)'),
+from .models import status,produk,kategori
 
-
-# )
-# class PostForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = produk
@@ -39,7 +28,7 @@ class StatusForm(forms.ModelForm):
     class Meta:
         model = status
         fields=[
-            'id_status',
+          
             'nama_status'
         ]
         widgets = {
@@ -51,6 +40,22 @@ class StatusForm(forms.ModelForm):
                 }
             ), 
         }
+class KategoriForm(forms.ModelForm):
+    class Meta:
+        model = kategori
+        fields=[
+            'nama_kategori',
+        ]
+        widgets = {
+             'id_kategori': forms.NumberInput(attrs={'class':'form-control','min': '1', 'max': '10000000'}),
+               'nama_kategori': forms.TextInput(
+                attrs={
+                    'class':'form-control',
+                    'placeholder':'Masukkan Nama Kategori'
+                }
+            ), 
+        }
+
 class UpdateStatusForm(forms.ModelForm):
     class Meta:
         model = status

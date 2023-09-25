@@ -35,19 +35,20 @@
                 {{post_form.as_table}} {% for produk in Produks %}
 
                 <tr>
-                    <td>{{produk.id}}</td>
+                    <td>{{produk.no}}</td>
                     <td>{{produk.id_produk}}</td>
                     <td>{{produk.nama_produk}}</td>
                     <td>{{produk.harga}}</td>
-                    {% for status in Statuss %}
-                    <td>{{status.nama_status}}</td> {% endfor %} {% for kategoris in Kategoris %}
-                    <td>{{kategoris.nama_kategori}}</td>
-                    {% endfor %}
+
+                    <td>{{produk.status_id.nama_status}}</td>
+
+                    <td>{{produk.kategori_id}}</td>
+
                     <td>
 
-                        </button><a href="{% url 'delete' produk.id %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus data {{produk.nama_produk}}')">Delete</a>
+                        </button><a href="{% url 'delete' produk.no %}" class="btn btn-danger" onclick="return confirm('Beneran mau hapus data {{produk.nama_produk}}')">Delete</a>
 
-                        <a class="btn btn-warning" href="{% url 'update' produk.id %}" title="">Update</a>
+                        <a class="btn btn-warning" href="{% url 'update' produk.no %}" title="">Update</a>
                     </td>
                 </tr>
 
